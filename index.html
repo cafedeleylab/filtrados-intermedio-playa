@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Métodos Filtrados Intermedio en Playa del Carmen — Café de Ley</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Aprende a medir agua, molienda y extracción para ajustar recetas reproducibles en Playa del Carmen, de 9:00 a. m. a 3:30 p. m. Fechas por confirmar.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Métodos Filtrados Intermedio en Playa del Carmen — Café de Ley">
+<meta property="og:description" content="Aprende a medir agua, molienda y extracción para ajustar recetas reproducibles en Playa del Carmen, de 9:00 a. m. a 3:30 p. m. Fechas por confirmar.">
+<meta property="og:image" content="og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="og-image.jpg">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700;9..144,900&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* =====================================================================
+   Café de Ley — Sistema de landings de cursos (v2)
+   Fuente: fusión de las landings Sensory Skills (Playa/Mérida),
+   Métodos Filtrados Básico/Intermedio y Barismo Básico (sep 2026).
+   NO editar por curso. Si un curso necesita algo nuevo, se agrega aquí
+   como módulo reutilizable y se documenta en docs/modulos.md.
+   ===================================================================== */
+
+/* ============ Paleta (constantes — los componentes usan los tokens de tono) ============ */
+:root{
+  --ink-deep:#05090b;
+  --ink:#0e1b20;
+  --ink-raised:#152a30;
+  --ink-line: rgba(221,207,197,0.14);
+  --taupe:#584e3e;
+  --brass:#c9a66b;
+  --brass-bright:#dab97e;
+  --brass-dim: rgba(201,166,107,0.35);
+  --brass-deep:#8a6423;
+  --sand:#ddcfc5;
+  --cream:#f3ece2;
+  --cream-dim: rgba(243,236,226,0.62);
+
+  --paper:#f5efe3;
+  --paper-raised:#ece1cd;
+  --paper-line: rgba(21,36,42,0.14);
+  --paper-ink:#15242a;
+  --paper-ink-dim: rgba(21,36,42,0.62);
+
+  --gold-1:#f4e4bb;
+  --gold-2:#ecd39c;
+  --gold-ink:#241b0d;
+  --gold-ink-dim:#4a3b22;
+
+  --shadow: 0 30px 80px -40px rgba(0,0,0,0.7);
+  --shadow-soft: 0 22px 46px -30px rgba(21,36,42,0.35);
+  --radius: 18px;
+
+  --font-display:'Fraunces', Georgia, serif;
+  --font-body:'Manrope', ui-sans-serif, system-ui, sans-serif;
+  --font-mono:'IBM Plex Mono', ui-monospace, monospace;
+}
+
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+
+body{
+  margin:0;
+  background: var(--ink-deep);
+  color: var(--cream);
+  font-family: var(--font-body);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x: hidden;
+}
+
+::selection{ background: var(--brass-dim); color:var(--ink-deep); }
+
+a{ color:inherit; }
+img{ display:block; max-width:100%; }
+
+.wrap{
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 56px);
+}
+
+h1,h2,h3{
+  font-family: var(--font-display);
+  font-weight:700;
+  text-wrap: balance;
+  margin:0;
+  color: var(--text);
+}
+
+.eyebrow{
+  font-family: var(--font-mono);
+  font-size:0.7rem;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color: var(--eyebrow-color);
+}
+
+p{ margin:0; }
+
+/* Marcador visible de dato faltante — build.py lo genera para "PENDIENTE: ..." */
+.pendiente{
+  background: repeating-linear-gradient(135deg, #ffe08a 0 8px, #ffd35c 8px 16px);
+  color:#3a2a00;
+  font-family: var(--font-mono);
+  font-size:0.8em;
+  padding: 2px 8px;
+  border-radius:6px;
+  font-weight:600;
+}
+
+/* ---------- Botones ---------- */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  font-family: var(--font-body);
+  font-weight:700;
+  font-size:0.95rem;
+  padding: 15px 28px;
+  border-radius: 999px;
+  text-decoration:none;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+  cursor:pointer;
+  border: 1px solid transparent;
+}
+.btn:focus-visible{ outline: 2px solid var(--brass); outline-offset:3px; }
+
+.btn--brass{
+  background: linear-gradient(180deg, var(--brass-bright), var(--brass));
+  color: var(--ink-deep);
+  box-shadow: 0 10px 24px -12px rgba(21,15,4,0.45);
+}
+.btn--brass:hover{ transform: translateY(-2px); box-shadow: 0 14px 28px -12px rgba(21,15,4,0.55); }
+
+.btn--ghost{
+  background: rgba(5,9,11,0.35);
+  border-color: var(--ink-line);
+  color: var(--cream);
+  backdrop-filter: blur(6px);
+}
+.btn--ghost:hover{ border-color: var(--brass-dim); background: rgba(201,166,107,0.1); }
+
+/* ---------- Header ---------- */
+header{
+  position: sticky;
+  top:0;
+  z-index: 50;
+  backdrop-filter: blur(14px);
+  background: rgba(5,9,11,0.72);
+  border-bottom: 1px solid var(--ink-line);
+}
+.nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: 10px clamp(20px, 5vw, 56px);
+  max-width:1080px;
+  margin:0 auto;
+}
+.wordmark{ display:flex; align-items:center; text-decoration:none; }
+.wordmark img{ height:46px; width:auto; }
+.nav .btn--ghost{ padding:10px 18px; font-size:0.82rem; border-color: var(--ink-line); background:transparent; backdrop-filter:none; }
+.nav .btn--ghost:hover{ background: rgba(201,166,107,0.06); }
+
+/* ---------- Hero (siempre oscuro) ---------- */
+.hero{
+  --surface:var(--ink-deep); --text:var(--cream); --text-dim:var(--cream-dim); --hairline:var(--ink-line); --eyebrow-color:var(--brass);
+  position:relative;
+  min-height: 88svh;
+  display:flex;
+  align-items:flex-end;
+  overflow:hidden;
+  padding:0;
+}
+.hero-media{ position:absolute; inset:0; z-index:0; }
+.hero-media img{
+  width:100%; height:100%;
+  object-fit:cover;
+  object-position: var(--hero-pos, 50% 30%);
+}
+.hero-media::after{
+  content:"";
+  position:absolute; inset:0;
+  background:
+    linear-gradient(0deg, rgba(5,9,11,0.97) 0%, rgba(5,9,11,0.85) 32%, rgba(5,9,11,0.4) 62%, rgba(5,9,11,0.62) 100%),
+    linear-gradient(100deg, rgba(5,9,11,0.72) 0%, rgba(5,9,11,0.1) 55%);
+}
+.hero-content{
+  position:relative;
+  z-index:1;
+  width:100%;
+  padding: clamp(120px,26vh,220px) 0 clamp(36px,5vw,56px);
+}
+.hero h1{
+  font-size: clamp(2.5rem, 7vw, 4.4rem);
+  line-height:0.98;
+  margin-top:14px;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.6);
+}
+.hero .eyebrow{ text-shadow: 0 2px 10px rgba(0,0,0,0.7); }
+.hero h1 em{ font-style:normal; color: var(--brass); }
+.hero-sub{
+  margin-top:20px;
+  max-width: 58ch;
+  color: rgba(243,236,226,0.92);
+  font-size: clamp(0.98rem, 1.4vw, 1.05rem);
+  text-shadow: 0 2px 16px rgba(0,0,0,0.65);
+}
+.hero-sub strong{ color: var(--cream); }
+.hero-cta-row{
+  margin-top: 30px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  align-items:center;
+}
+.hero-cta-note{
+  font-family: var(--font-mono);
+  font-weight:600;
+  font-size:0.8rem;
+  color: var(--brass);
+  letter-spacing:0.04em;
+  margin-top:16px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+}
+
+/* ============ Sistema de tonos por sección ============
+   Cada <section> lleva data-tone="light" (papel) o data-tone="dark" (tinta).
+   Ritmo por defecto: intro/temario/inversión/inscripción = light;
+   frase/por-qué/capacitadores/ubicación/cierre = dark. */
+section{ position:relative; padding: clamp(56px, 9vw, 100px) 0; background: var(--surface); color: var(--text-dim); }
+section[data-tone="dark"]{
+  --surface: var(--ink-deep);
+  --surface-raised: var(--ink-raised);
+  --text: var(--cream);
+  --text-dim: var(--cream-dim);
+  --hairline: var(--ink-line);
+  --eyebrow-color: var(--brass);
+  --lede-color: var(--sand);
+  --lede-strong: var(--brass);
+}
+section[data-tone="light"]{
+  --surface: var(--paper);
+  --surface-raised: var(--paper-raised);
+  --text: var(--paper-ink);
+  --text-dim: var(--paper-ink-dim);
+  --hairline: var(--paper-line);
+  --eyebrow-color: var(--brass-deep);
+  --lede-color: var(--paper-ink);
+  --lede-strong: var(--brass-deep);
+}
+
+/* línea fina donde cambian de tono dos secciones contiguas */
+section[data-tone] + section[data-tone]{ border-top:1px solid var(--hairline); }
+.hero + section{ border-top:1px solid var(--ink-line); }
+
+.section-head{ max-width:60ch; margin-bottom: clamp(32px,5vw,52px); }
+.section-head h2{ font-size: clamp(1.8rem, 3.4vw, 2.6rem); margin-top:12px; }
+.section-head p{ margin-top:14px; color:var(--text-dim); font-size:1.05rem; }
+
+.lede{
+  font-family: var(--font-display);
+  font-weight:500;
+  font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+  line-height:1.5;
+  max-width: 42ch;
+  color: var(--lede-color);
+}
+.lede strong{ color:var(--lede-strong); font-weight:600; }
+
+/* ---------- Intro copy (objetivo general, texto corrido) ---------- */
+.intro-copy{ max-width:70ch; display:flex; flex-direction:column; gap:16px; font-size:1.02rem; color:var(--text-dim); }
+.intro-copy strong{ color:var(--text); }
+
+/* ---------- Carrusel ---------- */
+.intro-eyebrow{ padding: 0 clamp(20px,5vw,56px); margin-bottom:16px; max-width:1080px; margin-left:auto; margin-right:auto; }
+.carousel{
+  display:flex;
+  gap:14px;
+  overflow-x:auto;
+  padding: 0 clamp(20px,5vw,56px) 6px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.carousel::-webkit-scrollbar{ display:none; }
+.carousel-item{
+  flex: 0 0 auto;
+  width: clamp(190px, 26vw, 280px);
+  aspect-ratio: 4/5;
+  object-fit:cover;
+  border-radius: var(--radius);
+  border:1px solid var(--hairline);
+  scroll-snap-align:start;
+  box-shadow: var(--shadow-soft);
+}
+.carousel-dots{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:9px;
+  margin-top:22px;
+}
+.carousel-dot{
+  width:7px; height:7px;
+  border-radius:999px;
+  border:none;
+  padding:0;
+  background: var(--text-dim);
+  opacity:0.35;
+  cursor:pointer;
+  transition: opacity 0.25s ease, transform 0.3s ease, background 0.25s ease;
+}
+.carousel-dot.is-active{
+  opacity:1;
+  background: var(--eyebrow-color);
+  transform: scale(1.7);
+}
+
+/* ---------- Franja de datos (specs) ---------- */
+.intro-specs{ margin-top: clamp(40px,6vw,64px); }
+.spec-strip{
+  display:grid;
+  grid-template-columns: repeat(var(--spec-cols, 3), minmax(0,1fr));
+  border-top:1px solid var(--hairline);
+  border-bottom:1px solid var(--hairline);
+}
+.spec{
+  padding: 18px clamp(10px,2vw,22px);
+  border-left:1px solid var(--hairline);
+}
+.spec:first-child{ border-left:none; padding-left:0; }
+.spec-label{
+  font-family: var(--font-mono);
+  font-size:0.62rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color: var(--text-dim);
+}
+.spec-note{ margin-top:4px; color:var(--text-dim); font-size:0.78rem; }
+.spec-value{
+  margin-top:6px;
+  font-family: var(--font-body);
+  font-weight:600;
+  font-size:0.9rem;
+  line-height:1.35;
+  color: var(--text);
+}
+.spec-rows{ margin-top:6px; display:flex; flex-direction:column; gap:5px; }
+.spec-rows p{ font-weight:600; font-size:0.86rem; color: var(--text); }
+.spec-rows b{
+  font-family: var(--font-mono);
+  font-weight:700;
+  font-size:0.8rem;
+  letter-spacing:0.06em;
+  color: var(--eyebrow-color);
+  margin-right:8px;
+}
+
+/* ---------- Temario formato "dias": tarjetas con foto ---------- */
+.days{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+.day-card{
+  background: var(--surface-raised);
+  border:1px solid var(--hairline);
+  border-radius: var(--radius);
+  overflow:hidden;
+  box-shadow: var(--shadow-soft);
+}
+.day-media{ aspect-ratio: 16/10; overflow:hidden; }
+.day-media img{ width:100%; height:100%; object-fit:cover; }
+.day-body{ padding: clamp(22px,3vw,30px); }
+.day-index{
+  font-family: var(--font-mono);
+  font-size:0.7rem;
+  letter-spacing:0.18em;
+  color: var(--eyebrow-color);
+}
+.day-card h3{ font-size:1.4rem; margin-top:8px; }
+.day-list{
+  list-style:none;
+  margin: 18px 0 0;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  gap:11px;
+}
+.day-list li{
+  position:relative;
+  padding-left:20px;
+  font-size:0.93rem;
+  color: var(--text-dim);
+}
+.day-list li::before{
+  content:"";
+  position:absolute; left:0; top:0.55em;
+  width:7px; height:1px;
+  background: var(--eyebrow-color);
+}
+.day-list li strong{ color:var(--text); font-weight:600; }
+.temario-resultado{ margin-top: clamp(32px,5vw,48px); max-width:70ch !important; }
+
+/* ---------- Temario formato "bloques": foto panorámica + 2 columnas de listas ---------- */
+.curriculum-media{
+  aspect-ratio: 21/9;
+  border-radius: var(--radius);
+  overflow:hidden;
+  border:1px solid var(--hairline);
+  box-shadow: var(--shadow-soft);
+  margin-bottom: clamp(32px,5vw,48px);
+}
+.curriculum-media img{ width:100%; height:100%; object-fit:cover; }
+.curriculum-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px,5vw,56px);
+}
+.curriculum-block h3{
+  font-family: var(--font-mono);
+  font-size:0.72rem;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color: var(--eyebrow-color);
+  font-weight:600;
+}
+
+/* ---------- Certificación (panel foto + texto) ---------- */
+.cert-panel{
+  display:grid;
+  grid-template-columns: 1fr 1.1fr;
+  background: var(--surface-raised);
+  border:1px solid var(--hairline);
+  border-radius: var(--radius);
+  overflow:hidden;
+  box-shadow: var(--shadow-soft);
+}
+.cert-media{ position:relative; min-height:280px; }
+.cert-media img{ width:100%; height:100%; object-fit:cover; position:absolute; inset:0; }
+.cert-copy{ padding: clamp(28px,4vw,44px); }
+.cert-copy h2{ font-size:1.7rem; }
+.cert-copy p{ color:var(--text-dim); margin-top:16px; }
+.cert-copy strong{ color:var(--text); }
+.cert-tags{ display:flex; gap:10px; flex-wrap:wrap; margin-top:20px; }
+.cert-tag{
+  font-family: var(--font-mono);
+  font-size:0.66rem;
+  letter-spacing:0.08em;
+  padding:7px 12px;
+  border-radius:999px;
+  border:1px solid var(--hairline);
+  color: var(--text-dim);
+}
+
+/* ---------- Frase (banner cinematográfico) ---------- */
+.quote-banner{
+  position:relative;
+  border-radius: var(--radius);
+  overflow:hidden;
+  min-height: 260px;
+  display:flex;
+  align-items:center;
+  border:1px solid var(--hairline);
+}
+.quote-banner img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.quote-banner::after{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(100deg, rgba(5,9,11,0.92) 15%, rgba(5,9,11,0.55) 70%);
+}
+.quote-banner blockquote{
+  position:relative; z-index:1;
+  margin:0;
+  padding: clamp(28px,5vw,48px);
+  max-width: 46ch;
+  font-family: var(--font-display);
+  font-style:italic;
+  font-weight:500;
+  font-size: clamp(1.2rem, 2.4vw, 1.6rem);
+  color: var(--sand);
+  line-height:1.5;
+}
+.quote-banner cite{
+  display:block;
+  margin-top:14px;
+  font-style:normal;
+  font-family: var(--font-mono);
+  font-size:0.7rem;
+  letter-spacing:0.05em;
+  color: var(--brass);
+}
+/* variante "papel": la frase va en una tarjeta clara sobre la foto, sin velo oscuro
+   (útil cuando la foto es un gráfico/diagrama que debe verse completo) */
+.quote-banner--papel::after{ content:none; }
+.quote-banner--papel blockquote{
+  margin: clamp(16px,3vw,28px);
+  padding: clamp(18px,3vw,28px);
+  color: var(--paper-ink);
+  background: rgba(245,239,227,0.88);
+  backdrop-filter: blur(6px);
+  border-radius: 14px;
+  box-shadow: var(--shadow-soft);
+}
+.quote-banner--papel cite{ color: var(--brass-deep); }
+
+/* ---------- Por qué elegir Café de Ley ---------- */
+.why-copy{ display:flex; flex-direction:column; gap:20px; }
+
+/* ---------- Capacitadores ---------- */
+.instructors{ display:flex; flex-direction:column; }
+.instructor-row{
+  display:grid;
+  grid-template-columns: 132px 1fr;
+  gap: clamp(24px,4vw,40px);
+  align-items:start;
+  padding: clamp(28px,4vw,40px) 0;
+  border-top:1px solid var(--hairline);
+}
+.instructor-row:last-child{ border-bottom:1px solid var(--hairline); }
+.instructor-photo{
+  width:132px; height:132px;
+  border-radius: 14px;
+  overflow:hidden;
+  background: var(--cream);
+  box-shadow: var(--shadow-soft);
+}
+.instructor-photo img{ width:100%; height:100%; object-fit:cover; object-position: top center; }
+.instructor-card h3{ font-size:1.3rem; }
+.instructor-role{
+  margin-top:6px;
+  font-family: var(--font-mono);
+  font-size:0.68rem;
+  letter-spacing:0.05em;
+  color: var(--eyebrow-color);
+  line-height:1.7;
+}
+.instructor-card p.bio{ margin-top:14px; color:var(--text-dim); font-size:0.95rem; max-width:62ch; }
+
+/* ---------- Inversión (panel dorado — mismo en ambos tonos) ---------- */
+.price-panel{
+  position:relative;
+  display:grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(24px,4vw,48px);
+  background: linear-gradient(135deg, var(--gold-1), var(--gold-2));
+  border:1px solid rgba(74,59,34,0.18);
+  border-radius: var(--radius);
+  padding: clamp(28px,4vw,44px);
+  box-shadow: 0 26px 60px -34px rgba(21,15,4,0.4);
+}
+.price-main .eyebrow{ margin-bottom:8px; color: var(--brass-deep); }
+.price-figure{
+  margin-top:14px;
+  font-family: var(--font-display);
+  font-weight:700;
+  font-size: clamp(2.3rem, 5vw, 3.4rem);
+  color: var(--gold-ink);
+  display:flex;
+  align-items:baseline;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.price-figure small{ font-family: var(--font-mono); font-size:0.9rem; color:#5c4a2c; font-weight:500; }
+.price-discount{ margin-top:12px; color:var(--gold-ink-dim); font-size:0.98rem; }
+.price-discount strong{ color:#1f1608; }
+.price-note{ margin-top:14px; color:var(--gold-ink-dim); font-size:0.94rem; max-width:40ch; }
+.price-note strong{ color:#1f1608; }
+.price-list{
+  list-style:none;
+  margin:0; padding:0;
+  display:flex; flex-direction:column; gap:14px;
+  border-left:1px solid rgba(74,59,34,0.22);
+  padding-left: clamp(20px,3vw,32px);
+}
+.price-list li{ font-size:0.94rem; color:var(--gold-ink-dim); }
+.price-list li strong{ display:block; color:var(--gold-ink); font-family: var(--font-display); font-size:1.12rem; font-weight:600; margin-bottom:2px; }
+.price-badge{
+  position:absolute;
+  top:-14px; right:20px;
+  background: var(--brass-deep);
+  color: var(--gold-1);
+  font-family: var(--font-mono);
+  font-size:0.66rem;
+  line-height:1.4;
+  text-align:center;
+  padding:10px 14px;
+  border-radius:12px;
+  box-shadow: 0 10px 20px -10px rgba(21,15,4,0.5);
+  max-width:150px;
+}
+
+/* ---------- Inscripción (banner + 3 pasos) ---------- */
+.steps-banner{
+  position:relative;
+  border-radius: var(--radius);
+  overflow:hidden;
+  margin-bottom: 32px;
+  aspect-ratio: 21/9;
+}
+.steps-banner img{ width:100%; height:100%; object-fit:cover; }
+.steps-banner::after{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(0deg, rgba(5,9,11,0.82) 0%, rgba(5,9,11,0.66) 29%, rgba(5,9,11,0.36) 52.9%, rgba(5,9,11,0.14) 71%, rgba(5,9,11,0) 100%);
+  pointer-events:none;
+}
+.steps-banner-caption{
+  position:absolute; left:0; right:0; bottom:0;
+  padding: 18px 22px;
+  z-index:1;
+  font-family: var(--font-mono);
+  font-size:0.74rem;
+  letter-spacing:0.06em;
+  color: var(--sand);
+}
+.steps{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top:1px solid var(--hairline);
+  border-bottom:1px solid var(--hairline);
+}
+.step{
+  padding: 28px clamp(16px,3vw,28px);
+  border-left:1px solid var(--hairline);
+}
+.step:first-child{ border-left:none; padding-left:0; }
+.step-num{
+  font-family: var(--font-display);
+  font-weight:600;
+  font-size:1.3rem;
+  color: var(--eyebrow-color);
+}
+.step h3{ font-size:1.04rem; margin-top:10px; font-family: var(--font-body); font-weight:700; }
+.step p{ margin-top:10px; color:var(--text-dim); font-size:0.92rem; }
+
+/* ---------- Ubicación ---------- */
+.loc-panel{
+  background: var(--surface-raised);
+  border:1px solid var(--hairline);
+  border-radius: var(--radius);
+  padding: clamp(28px,4vw,44px);
+}
+.loc-city{
+  font-family: var(--font-display);
+  font-weight:700;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  color: var(--text);
+  margin-top:10px;
+}
+.loc-partners{
+  margin-top: clamp(22px,3vw,30px);
+  display:flex;
+  align-items:center;
+  gap: clamp(16px,2.4vw,24px);
+}
+.loc-partners img{ height: clamp(40px,5vw,56px); width:auto; }
+.loc-partners-x{
+  font-family: var(--font-display);
+  font-style:italic;
+  font-weight:500;
+  font-size:1.1rem;
+  color: var(--text-dim);
+}
+.loc-copy{
+  margin-top: clamp(20px,3vw,28px);
+  padding-top: clamp(20px,3vw,28px);
+  border-top:1px solid var(--hairline);
+}
+.loc-copy address{ font-style:normal; color:var(--text-dim); font-size:1rem; line-height:1.7; }
+.loc-copy address strong{ color:var(--text); display:block; font-family: var(--font-display); font-size:1.15rem; font-weight:600; margin-bottom:8px; }
+.loc-map{ display:inline-block; margin-top:14px; font-family: var(--font-mono); font-size:0.74rem; letter-spacing:0.06em; color: var(--eyebrow-color); text-decoration:none; border-bottom:1px solid var(--brass-dim); padding-bottom:2px; }
+.loc-map:hover{ border-color: var(--brass); }
+
+/* ---------- Cierre (CTA final, máximo contraste) ---------- */
+.final{
+  background: radial-gradient(circle at 50% 0%, var(--ink-raised), var(--ink-deep) 70%);
+  text-align:center;
+}
+.final h2{ font-size: clamp(2.1rem, 5vw, 3.4rem); }
+.final .lede{ margin: 18px auto 0; text-align:center; }
+.final-actions{
+  margin-top: 36px;
+  display:flex;
+  gap:14px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.final .btn--brass{ padding: 18px 36px; font-size:1.02rem; }
+
+footer{
+  background: var(--ink-deep);
+  padding: 36px clamp(20px,5vw,56px) 44px;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:14px;
+}
+footer img{ height:44px; width:auto; opacity:0.9; }
+footer p{
+  color: var(--cream-dim);
+  font-family: var(--font-mono);
+  font-size:0.7rem;
+  letter-spacing:0.04em;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 860px){
+  .hero{ min-height:82svh; }
+  .hero-media img{ object-position: var(--hero-pos-movil, var(--hero-pos, 50% 24%)); }
+  .spec-strip{ grid-template-columns: 1fr; }
+  .spec{ border-left:none; border-top:1px solid var(--hairline); padding-left:0; }
+  .spec:first-child{ border-top:none; }
+  .days{ grid-template-columns:1fr; }
+  .curriculum-grid{ grid-template-columns:1fr; gap:36px; }
+  .cert-panel{ grid-template-columns:1fr; }
+  .cert-media{ min-height:240px; }
+  .instructor-row{ grid-template-columns: 92px 1fr; gap:20px; }
+  .instructor-photo{ width:92px; height:92px; }
+  .steps{ grid-template-columns:1fr; }
+  .step{ border-left:none; border-top:1px solid var(--hairline); padding-left:0; }
+  .step:first-child{ border-top:none; }
+  .price-panel{ grid-template-columns:1fr; }
+  .price-list{ border-left:none; padding-left:0; border-top:1px solid rgba(74,59,34,0.22); padding-top:18px; }
+  .price-badge{ position:static; max-width:none; justify-self:start; margin-bottom:-6px; }
+}
+
+@media (max-width: 480px){
+  .nav .btn--ghost span.full{ display:none; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  .btn, .carousel-dot{ transition:none; }
+}
+
+
+/* Capa de movimiento opcional. El contenido permanece visible sin JavaScript. */
+html{scroll-padding-top:78px}
+.scroll-progress{
+  position:fixed;inset:0 auto auto 0;z-index:1000;width:100%;height:2px;
+  background:linear-gradient(90deg,#c9a66b,#efdbaf);
+  transform:scaleX(0);transform-origin:left center;pointer-events:none;
+}
+.motion-ready .hero-media img{
+  transform:translate3d(0,var(--hero-drift,0px),0) scale(1.06);
+  animation:hero-focus 1.6s cubic-bezier(.22,1,.36,1);
+}
+@keyframes hero-focus{
+  from{opacity:.82;transform:translate3d(0,0,0) scale(1.12)}
+  to{opacity:1;transform:translate3d(0,var(--hero-drift,0px),0) scale(1.06)}
+}
+.motion-ready .hero-content .eyebrow,
+.motion-ready .hero h1,
+.motion-ready .hero-sub,
+.motion-ready .hero-cta-row,
+.motion-ready .hero-cta-note{animation:hero-rise .85s cubic-bezier(.22,1,.36,1) both}
+.motion-ready .hero h1{animation-delay:.1s}
+.motion-ready .hero-sub{animation-delay:.2s}
+.motion-ready .hero-cta-row{animation-delay:.3s}
+.motion-ready .hero-cta-note{animation-delay:.4s}
+@keyframes hero-rise{
+  from{opacity:0;transform:translate3d(0,22px,0)}
+  to{opacity:1;transform:translate3d(0,0,0)}
+}
+.motion-ready [data-reveal]{
+  opacity:0;
+  transform:translate3d(var(--reveal-x,0px),22px,0);
+  transition:opacity 780ms cubic-bezier(.22,1,.36,1),transform 780ms cubic-bezier(.22,1,.36,1);
+  transition-delay:var(--reveal-delay,0ms);
+}
+.motion-ready [data-reveal="left"]{--reveal-x:-30px}
+.motion-ready [data-reveal="right"]{--reveal-x:30px}
+.motion-ready [data-reveal].is-visible{opacity:1;transform:translate3d(0,0,0)}
+.motion-ready .section-head[data-reveal]::after{
+  content:"";display:block;width:72px;height:2px;margin-top:18px;
+  background:linear-gradient(90deg,var(--eyebrow-color),transparent);
+  transform:scaleX(0);transform-origin:left center;
+  transition:transform 900ms 180ms cubic-bezier(.22,1,.36,1);
+}
+.motion-ready .section-head[data-reveal].is-visible::after{transform:scaleX(1)}
+.motion-ready .intro-specs .spec:nth-child(2),
+.motion-ready .curriculum-block:nth-child(2),
+.motion-ready .step:nth-child(2){--reveal-delay:100ms}
+.motion-ready .intro-specs .spec:nth-child(3),
+.motion-ready .step:nth-child(3){--reveal-delay:200ms}
+
+/* Recorrido editorial: el texto desplaza una secuencia de imágenes fija. */
+.motion-journey{
+  overflow:clip;padding-bottom:0;
+  background:radial-gradient(circle at 76% 18%,rgba(201,166,107,.13),transparent 31%),
+             linear-gradient(155deg,#11262c 0%,#071216 47%,#05090b 100%);
+}
+.motion-journey::before{
+  content:"";position:absolute;right:-20vw;top:15%;width:58vw;aspect-ratio:1;
+  border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(201,166,107,.11),transparent 62%);
+  transform:translate3d(0,var(--journey-glow,0px),0);
+}
+.journey-intro{position:relative;z-index:1;max-width:760px;padding-bottom:clamp(34px,6vw,80px)}
+.journey-intro h2{
+  max-width:11ch;margin:18px 0 20px;color:var(--cream);
+  font-size:clamp(3.2rem,7vw,6.6rem);line-height:.97;letter-spacing:-.045em;
+}
+.journey-intro>p:last-child{max-width:48ch;font-size:clamp(1rem,1.4vw,1.18rem);color:var(--sand);line-height:1.65}
+.journey-grid{display:grid;grid-template-columns:.88fr 1.12fr;gap:clamp(32px,6vw,92px);align-items:start}
+.journey-steps{position:relative;z-index:2}
+.journey-step{
+  min-height:74svh;display:flex;flex-direction:column;justify-content:center;
+  padding:50px 0 70px;border-top:1px solid rgba(221,207,197,.18);
+  opacity:1;transition:opacity 600ms ease,transform 700ms cubic-bezier(.22,1,.36,1);
+}
+.motion-ready .journey-step{opacity:.38;transform:translate3d(0,14px,0)}
+.motion-ready .journey-step.is-active{opacity:1;transform:translate3d(0,0,0)}
+.journey-kicker{
+  color:var(--brass);font:600 .7rem var(--font-mono);letter-spacing:.23em;
+  text-transform:uppercase;margin-bottom:25px;
+}
+.journey-step h3{max-width:11ch;color:var(--cream);font-size:clamp(2.2rem,4.2vw,4.1rem);line-height:1.03;letter-spacing:-.035em}
+.journey-copy{max-width:34ch;color:var(--sand);font-size:clamp(1rem,1.25vw,1.13rem);line-height:1.72;margin-top:20px}
+.journey-visual{position:sticky;top:13svh;height:74svh;min-height:430px;margin-bottom:80px;align-self:start}
+.journey-frame{
+  position:relative;height:calc(100% - 58px);overflow:hidden;border-radius:18px;
+  background:#152a30;box-shadow:0 30px 75px -30px rgba(0,0,0,.68);
+  isolation:isolate;
+}
+.journey-frame::after{
+  content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  border:1px solid rgba(243,236,226,.17);border-radius:inherit;
+  background:linear-gradient(180deg,rgba(5,9,11,.28),transparent 28%,transparent 60%,rgba(5,9,11,.52));
+}
+.journey-photo{position:absolute;inset:0;opacity:0;transform:scale(1.1);transition:opacity 850ms ease,transform 1450ms cubic-bezier(.22,1,.36,1)}
+.journey-photo:first-child,.journey-photo.is-active{opacity:1;transform:scale(1)}
+.motion-ready .journey-photo:first-child:not(.is-active){opacity:0;transform:scale(1.1)}
+.journey-photo img{width:100%;height:100%;object-fit:cover}
+.journey-frame-label,.journey-frame-corner{
+  position:absolute;z-index:3;color:#fff;font:600 .62rem var(--font-mono);
+  letter-spacing:.19em;text-shadow:0 2px 12px rgba(0,0,0,.55);
+}
+.journey-frame-label{top:25px;left:25px}.journey-frame-label span{color:var(--brass)}
+.journey-frame-corner{right:25px;bottom:23px;font-size:.75rem}
+.journey-track{display:flex;align-items:center;gap:14px;padding-top:22px;color:var(--brass);font:600 .61rem var(--font-mono);letter-spacing:.14em;white-space:nowrap}
+.journey-track>div{height:1px;flex:1;background:rgba(221,207,197,.27)}
+.journey-track i{display:block;width:33.33%;height:100%;background:var(--brass);transition:width 650ms cubic-bezier(.22,1,.36,1)}
+.journey-mobile-image{display:none}
+.journey-ribbon{
+  position:relative;z-index:2;overflow:hidden;margin-top:20px;
+  background:linear-gradient(105deg,#c9a66b,#ecd39c,#c9a66b);color:#0b1b20;
+  border-top:1px solid rgba(255,255,255,.28);border-bottom:1px solid rgba(0,0,0,.15);
+}
+.journey-ribbon-track{
+  display:flex;gap:2.8rem;width:max-content;padding:19px 0;
+  transform:translate3d(var(--ribbon-shift,0px),0,0);
+  font:600 clamp(.76rem,1.2vw,.98rem) var(--font-mono);letter-spacing:.19em;
+  text-transform:uppercase;white-space:nowrap;
+}
+.journey-ribbon-track span{padding-left:2.8rem}
+@media(min-width:769px) and (hover:hover){
+  .carousel-item,.curriculum-media img,.steps-banner img,.instructor-photo img{
+    transition:transform 850ms cubic-bezier(.22,1,.36,1),box-shadow 850ms ease;
+  }
+  .carousel-item:hover{transform:translateY(-5px);box-shadow:0 20px 44px rgba(5,9,11,.2)}
+  .curriculum-media:hover img,.steps-banner:hover img,.instructor-row:hover .instructor-photo img{transform:scale(1.035)}
+}
+@media(max-width:768px){
+  html{scroll-padding-top:70px}
+  .motion-ready [data-reveal]{transform:translate3d(0,14px,0)}
+  .motion-ready [data-reveal].is-visible{transform:translate3d(0,0,0)}
+  .motion-journey::before{display:none}
+  .journey-intro{padding-bottom:34px}
+  .journey-intro h2{font-size:clamp(3.1rem,12vw,4.6rem)}
+  .journey-grid{display:block}
+  .journey-visual{display:none}
+  .journey-step,.motion-ready .journey-step,.motion-ready .journey-step.is-active{
+    min-height:0;opacity:1;transform:none;padding:34px 0 56px;
+  }
+  .journey-step h3{max-width:15ch;font-size:clamp(2.3rem,9vw,3.4rem)}
+  .journey-copy{max-width:42ch;margin-bottom:27px}
+  .journey-mobile-image{display:block;overflow:hidden;border-radius:14px;aspect-ratio:4/3;background:#152a30}
+  .journey-mobile-image img{width:100%;height:100%;object-fit:cover}
+  .journey-ribbon{margin-top:0}
+  .journey-ribbon-track{padding:15px 0}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .scroll-progress{display:none}
+  .motion-ready .hero-media img,
+  .motion-ready .hero-content .eyebrow,
+  .motion-ready .hero h1,
+  .motion-ready .hero-sub,
+  .motion-ready .hero-cta-row,
+  .motion-ready .hero-cta-note{animation:none;transform:none}
+  .motion-ready [data-reveal],.motion-ready [data-reveal].is-visible{opacity:1;transform:none;transition:none}
+  .motion-ready .section-head[data-reveal]::after{display:none}
+  .carousel-item,.curriculum-media img,.steps-banner img,.instructor-photo img{transition:none}
+  .motion-ready .journey-step,.motion-ready .journey-step.is-active{opacity:1;transform:none;transition:none}
+  .journey-photo,.journey-track i{transition:none}
+  .journey-ribbon-track,.motion-journey::before{transform:none}
+}
+
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <a class="wordmark" href="#top"><img src="logo-cafe-de-ley.png" alt="Café de Ley" fetchpriority="high"></a>
+    <a class="btn btn--ghost" href="#inversion"><span class="full">Ver </span>inversión</a>
+  </div>
+</header>
+<main id="top">
+  <section class="hero" style="--hero-pos:50% 35%; --hero-pos-movil:50% 35%;">
+    <div class="hero-media"><img src="hero-filtrado-medicion-agua.jpg" alt="Filtrado y medición de agua" fetchpriority="high"></div>
+    <div class="hero-content">
+      <div class="wrap">
+        <p class="eyebrow">Café de Ley · Playa del Carmen</p>
+        <h1>Métodos Filtrados<br><em>Nivel Intermedio</em></h1>
+        <p class="hero-sub">Profundiza en la medición y el diagnóstico para desarrollar recetas precisas y reproducibles.</p>
+        <div class="hero-cta-row">
+          <a class="btn btn--brass" href="#reservar">Quiero mi lugar</a>
+          <a class="btn btn--ghost" href="#temario">Ver temario</a>
+        </div>
+        <p class="hero-cta-note">Cupo limitado a 8 personas</p>
+      </div>
+    </div>
+  </section>
+  <section data-tone="light">
+    <p class="eyebrow intro-eyebrow">Vive esta experiencia</p>
+    <div class="carousel">
+      <img class="carousel-item" src="mesa-de-preparacion-y-analisis.jpg" alt="Mesa de preparación y análisis" loading="lazy">
+      <img class="carousel-item" src="medicion-de-agua-y-filtrado.jpg" alt="Medición de agua y filtrado" loading="lazy">
+      <img class="carousel-item" src="extraccion-y-concentracion.jpg" alt="Extracción y concentración" loading="lazy">
+      <img class="carousel-item" src="brewing-control-chart.jpg" alt="Brewing Control Chart" loading="lazy">
+      <img class="carousel-item" src="practica-grupal-del-curso.jpg" alt="Práctica grupal del curso" loading="lazy">
+    </div>
+    <div class="carousel-dots" role="tablist" aria-label="Selector de imágenes del carrusel">
+      <button class="carousel-dot is-active" aria-label="Ir a la imagen 1"></button>
+      <button class="carousel-dot" aria-label="Ir a la imagen 2"></button>
+      <button class="carousel-dot" aria-label="Ir a la imagen 3"></button>
+      <button class="carousel-dot" aria-label="Ir a la imagen 4"></button>
+      <button class="carousel-dot" aria-label="Ir a la imagen 5"></button>
+    </div>
+    <div class="wrap intro-specs">
+      <div class="spec-strip" style="--spec-cols:3;">
+        <div class="spec">
+          <p class="spec-label">Fechas y horario</p>
+          <p class="spec-value">Fechas por confirmar · 9:00 a. m. a 3:30 p. m.</p>
+        </div>
+        <div class="spec">
+          <p class="spec-label">Duración</p>
+          <p class="spec-value">2 días · 13 horas</p>
+        </div>
+        <div class="spec">
+          <p class="spec-label">Reconocimiento</p>
+          <p class="spec-value">Diploma en español e inglés de nuestra escuela</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section data-tone="light">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Curso de Filtrados Intermedio — Café de Ley</p>
+        <h2>Objetivo general</h2>
+      </div>
+      <div class="intro-copy">
+        <p>Al finalizar, el participante podrá analizar agua y molienda, medir concentración y rendimiento de extracción, interpretar la Brewing Control Chart y diseñar recetas reproducibles conectando los datos con la evaluación sensorial.</p>
+      </div>
+    </div>
+  </section>
+  <section class="motion-journey" id="recorrido" data-tone="dark" aria-labelledby="journey-title">
+    <div class="wrap">
+      <div class="journey-intro">
+        <p class="eyebrow">El recorrido de una taza precisa</p>
+        <h2 id="journey-title">De la intuición al criterio</h2>
+        <p>Tres capas de análisis para entender qué sucede en cada extracción y decidir cómo mejorarla.</p>
+      </div>
+      <div class="journey-grid">
+        <div class="journey-steps">
+        <article class="journey-step is-active" data-journey-step>
+          <p class="journey-kicker">01 / AGUA</p>
+          <h3>Empieza por lo invisible</h3>
+          <p class="journey-copy">Explora dureza, alcalinidad, pH y conductividad para entender cómo el agua modifica lo que percibes en taza.</p>
+          <div class="journey-mobile-image"><img src="medicion-de-agua-y-filtrado.jpg" alt="Análisis del agua durante una preparación de café filtrado" loading="lazy"></div>
+        </article>
+        <article class="journey-step" data-journey-step>
+          <p class="journey-kicker">02 / EXTRACCIÓN</p>
+          <h3>Haz visible la extracción</h3>
+          <p class="journey-copy">Compara la molienda, mide la concentración con refractómetro y relaciona los datos con el rendimiento de extracción.</p>
+          <div class="journey-mobile-image"><img src="extraccion-y-concentracion.jpg" alt="Refractómetro y muestra de café para medir la concentración" loading="lazy"></div>
+        </article>
+        <article class="journey-step" data-journey-step>
+          <p class="journey-kicker">03 / RECETA</p>
+          <h3>Corrige con intención</h3>
+          <p class="journey-copy">Interpreta la Brewing Control Chart, evalúa la taza y ajusta una receta que puedas repetir con consistencia.</p>
+          <div class="journey-mobile-image"><img src="mesa-de-preparacion-y-analisis.jpg" alt="Mesa de trabajo con equipo y notas para ajustar una receta de filtrado" loading="lazy"></div>
+        </article>
+        </div>
+        <div class="journey-visual" aria-hidden="true">
+          <div class="journey-frame">
+          <div class="journey-photo is-active" data-journey-image><img src="medicion-de-agua-y-filtrado.jpg" alt="Análisis del agua durante una preparación de café filtrado" loading="lazy"></div>
+          <div class="journey-photo" data-journey-image><img src="extraccion-y-concentracion.jpg" alt="Refractómetro y muestra de café para medir la concentración" loading="lazy"></div>
+          <div class="journey-photo" data-journey-image><img src="mesa-de-preparacion-y-analisis.jpg" alt="Mesa de trabajo con equipo y notas para ajustar una receta de filtrado" loading="lazy"></div>
+            <div class="journey-frame-label">CAFÉ DE LEY <span>—</span> MÉTODOS FILTRADOS</div>
+            <div class="journey-frame-corner">0<span data-journey-counter>1</span> / 03</div>
+          </div>
+          <div class="journey-track"><span>PROGRESO DEL RECORRIDO</span><div><i data-journey-progress></i></div><span>03</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="journey-ribbon" aria-hidden="true"><div class="journey-ribbon-track"><span>AGUA · EXTRACCIÓN · RECETA · </span><span>AGUA · EXTRACCIÓN · RECETA · </span><span>AGUA · EXTRACCIÓN · RECETA · </span></div></div>
+  </section>
+  <section id="temario" data-tone="light">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Contenido del entrenamiento</p>
+        <h2>De la medición al diagnóstico: la ciencia detrás de una receta reproducible</h2>
+      </div>
+      <div class="curriculum-media"><img src="medicion-de-concentracion.jpg" alt="Medición de concentración" loading="lazy"></div>
+      <div class="curriculum-grid">
+        <div class="curriculum-block">
+          <h3>Resultados de aprendizaje</h3>
+          <ul class="day-list">
+              <li><strong>Diferenciar</strong> dureza, alcalinidad, pH y conductividad/TDS del agua</li>
+              <li><strong>Comparar</strong> distribuciones de molienda mediante tamices (Kruve Coffee) y porcentajes retenidos</li>
+              <li><strong>Calibrar</strong> y usar correctamente un refractómetro para bebidas de café</li>
+              <li><strong>Diferenciar</strong> TDS, concentración, rendimiento de extracción y preferencia</li>
+              <li><strong>Diseñar</strong> bebidas hacia objetivos cuantitativos sin convertirlos en reglas universales de calidad</li>
+              <li><strong>Diagnosticar</strong> caudal, agitación, finos, bypass y consistencia</li>
+          </ul>
+        </div>
+        <div class="curriculum-block">
+          <h3>Programa</h3>
+          <ul class="day-list">
+              <li>Composición del agua y su efecto en la taza</li>
+              <li>Molienda, distribución de partículas y análisis con tamices</li>
+              <li>Relación entre proceso, tueste, solubilidad y ajuste de molienda</li>
+              <li>Manejo y calibración del refractómetro</li>
+              <li>Medición de TDS y rendimiento de extracción</li>
+              <li>Interpretación de la Brewing Control Chart</li>
+              <li>Comparación de métodos cónicos y de fondo plano</li>
+              <li>Ejercicios de concentración y extracción</li>
+              <li>Diagnóstico técnico y sensorial de preparaciones</li>
+              <li>Diseño, medición y corrección de una receta final</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="frase" data-tone="dark">
+    <div class="wrap">
+      <div class="quote-banner quote-banner--papel">
+        <img src="coffee-brewing-control-chart.jpg" alt="Coffee Brewing Control Chart" loading="lazy">
+        <blockquote>Aprenderás a medir, interpretar y corregir una preparación utilizando datos y evaluación sensorial.</blockquote>
+      </div>
+    </div>
+  </section>
+  <section id="capacitadores" data-tone="dark">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Capacitadores</p>
+        <h2>Q Graders certificados por la SCA</h2>
+      </div>
+      <div class="instructors">
+        <div class="instructor-row">
+          <div class="instructor-photo"><img src="miguel-navarro.jpg" alt="Miguel Oswaldo Navarro Morón" loading="lazy"></div>
+          <div class="instructor-card">
+            <h3>Miguel Oswaldo Navarro Morón</h3>
+            <p class="instructor-role">CEO Barista · Cofundador de Café de Ley<br>Q Grader certificado · Abogado · Estratega cultural del café</p>
+            <p class="bio">Líder del café de especialidad que combina formación profesional, certificación internacional y visión estratégica. Certificado por la Specialty Coffee Association (SCA), entiende el café como una plataforma cultural centrada en comunidad, experiencias de marca y redes internacionales.</p>
+          </div>
+        </div>
+        <div class="instructor-row">
+          <div class="instructor-photo"><img src="efrain-medina.jpg" alt="Efraín Medina Hernández" loading="lazy"></div>
+          <div class="instructor-card">
+            <h3>Efraín Medina Hernández</h3>
+            <p class="instructor-role">CEO Barista · Cofundador de Café de Ley<br>Q Grader certificado · Economista · Educador del café</p>
+            <p class="bio">Economista colombiano que dio el salto del mundo financiero al café de especialidad. Q Grader certificado por la SCA y formador certificado en México dentro del programa Conocer, lidera cursos y experiencias sensoriales en Café de Ley.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="inversion" data-tone="light">
+    <div class="wrap">
+      <div class="price-panel">
+        <div class="price-main">
+          <p class="eyebrow">Inversión</p>
+          <div class="price-figure">$4,250<small>MXN</small></div>
+          <p class="price-discount">Reserva tu lugar con <strong>$1,000 MXN</strong> de anticipo.</p>
+          <p class="price-note">Clase semipersonalizada: una experiencia enfocada de aprendizaje.</p>
+        </div>
+        <ul class="price-list">
+          <li><strong>8 lugares</strong>por curso, para una mejor experiencia</li>
+          <li><strong>Clase semipersonalizada</strong>curso reducido para mejor experiencia</li>
+          <li><strong>Reconocimiento</strong>diploma en español e inglés de nuestra escuela</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section id="inscripcion" data-tone="dark">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Inscripción y acceso</p>
+        <h2>Lo que pasa en cuanto reservas</h2>
+      </div>
+      <div class="steps-banner">
+        <img src="practica-grupal-banner.jpg" alt="Práctica grupal del curso" loading="lazy">
+        <p class="steps-banner-caption">Clase semipersonalizada</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <p class="step-num">01</p>
+          <h3>Apartas tu lugar</h3>
+          <p>Envíanos el comprobante de tu depósito junto con tu nombre completo, y quedas registrado en nuestro sistema.</p>
+        </div>
+        <div class="step">
+          <p class="step-num">02</p>
+          <h3>Entras al grupo</h3>
+          <p>Un día antes del curso te agregamos a un grupo de WhatsApp exclusivo, donde compartimos toda la información y los entregables del curso.</p>
+        </div>
+        <div class="step">
+          <p class="step-num">03</p>
+          <h3>Vives el curso</h3>
+          <p>Dos días de práctica enfocada en medir, diagnosticar y ajustar cada extracción.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="ubicacion" data-tone="dark">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Ubicación</p>
+      </div>
+      <div class="loc-panel">
+        <p class="loc-city">Playa del Carmen</p>
+        <div class="loc-partners">
+          <img src="logo-cafe-de-ley-alt.png" alt="Café de Ley" loading="lazy">
+        </div>
+        <div class="loc-copy">
+          <address>
+            <strong>Laboratorio de Café de Ley · Plaza Yamaha</strong>
+            Av. Federal con 1ra Sur, local 14, tercer nivel<br>
+            Fechas por confirmar · 9:00 a. m. a 3:30 p. m.
+          </address>
+          <a class="loc-map" href="https://maps.app.goo.gl/tUGcojAx83yCmmnc9" target="_blank" rel="noopener">Cómo llegar →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="final" id="reservar" data-tone="dark">
+    <div class="wrap">
+      <p class="eyebrow">Te esperamos</p>
+      <h2>Lleva tu pasión por el café a otro nivel</h2>
+      <p class="lede">Domina los filtrados, desarrolla tu paladar y entiende el café como un profesional.</p>
+      <div class="final-actions">
+        <a class="btn btn--brass" href="https://wa.me/529841070040?text=Quiero%20reservar%20mi%20lugar%20para%20el%20curso%20de%20M%C3%A9todos%20Filtrados%20Intermedio%20en%20Playa%20del%20Carmen.%20%C2%BFMe%20comparten%20las%20pr%C3%B3ximas%20fechas%3F" target="_blank" rel="noopener">Quiero reservar</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <img src="logo-cafe-de-ley.png" alt="Café de Ley" loading="lazy">
+  <p>LAB &amp; ESTUDIO DE CAFÉ · PLAYA DEL CARMEN, MX</p>
+</footer>
+
+<script>
+(function(){
+  var track = document.querySelector('.carousel');
+  var dotsWrap = document.querySelector('.carousel-dots');
+  if(!track || !dotsWrap) return;
+  var items = Array.prototype.slice.call(track.querySelectorAll('.carousel-item'));
+  var dots = Array.prototype.slice.call(dotsWrap.querySelectorAll('.carousel-dot'));
+  function setActive(idx){ dots.forEach(function(d, i){ d.classList.toggle('is-active', i === idx); }); }
+  dots.forEach(function(dot, i){
+    dot.addEventListener('click', function(){
+      track.scrollTo({ left: items[i].offsetLeft - track.offsetLeft - parseFloat(getComputedStyle(track).paddingLeft), behavior:'smooth' });
+    });
+  });
+  if('IntersectionObserver' in window){
+    var ratios = new Array(items.length).fill(0);
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        var idx = items.indexOf(entry.target);
+        if(idx !== -1) ratios[idx] = entry.isIntersecting ? entry.intersectionRatio : 0;
+      });
+      var max = Math.max.apply(null, ratios);
+      if(max > 0) setActive(ratios.indexOf(max));
+    }, { root: track, threshold: [0, 0.25, 0.5, 0.6, 0.75, 1] });
+    items.forEach(function(item){ observer.observe(item); });
+  }
+})();
+</script>
+<script>
+(function(){
+  'use strict';
+  if(!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var selectors = [
+    '.intro-eyebrow','.carousel','.intro-specs .spec',
+    '.section-head','.intro-copy','.curriculum-media','.curriculum-block',
+    '.quote-banner','.instructor-row','.price-panel','.steps-banner','.step',
+    '.loc-panel','.final .eyebrow','.final h2','.final .lede','.final-actions',
+    '.journey-intro','.journey-mobile-image'
+  ];
+  var targets = Array.prototype.slice.call(document.querySelectorAll(selectors.join(',')));
+  targets.forEach(function(target){
+    var direction = 'up';
+    if(target.matches('.intro-specs .spec:nth-child(1),.curriculum-block:nth-child(1),.instructor-row:nth-child(1),.step:nth-child(1)')) direction = 'left';
+    if(target.matches('.intro-specs .spec:nth-child(3),.curriculum-block:nth-child(2),.instructor-row:nth-child(2),.step:nth-child(3)')) direction = 'right';
+    target.setAttribute('data-reveal',direction);
+    if(target.getBoundingClientRect().top < window.innerHeight * .9) target.classList.add('is-visible');
+  });
+
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target);
+    });
+  },{threshold:.08,rootMargin:'0px 0px -5% 0px'});
+  targets.forEach(function(target){if(!target.classList.contains('is-visible')) observer.observe(target)});
+
+  var scrollProgress = document.createElement('div');
+  scrollProgress.className = 'scroll-progress';
+  scrollProgress.setAttribute('aria-hidden','true');
+  document.body.appendChild(scrollProgress);
+  var hero = document.querySelector('.hero-media img');
+  var journey = document.querySelector('.motion-journey');
+  var journeySteps = journey ? Array.prototype.slice.call(journey.querySelectorAll('[data-journey-step]')) : [];
+  var journeyPhotos = journey ? Array.prototype.slice.call(journey.querySelectorAll('[data-journey-image]')) : [];
+  var journeyCounter = journey ? journey.querySelector('[data-journey-counter]') : null;
+  var journeyProgress = journey ? journey.querySelector('[data-journey-progress]') : null;
+  var ribbon = journey ? journey.querySelector('.journey-ribbon-track') : null;
+  var activeStep = 0;
+  function activateStep(index){
+    if(index === activeStep) return;
+    activeStep = index;
+    journeySteps.forEach(function(step,i){step.classList.toggle('is-active',i === index)});
+    journeyPhotos.forEach(function(photo,i){photo.classList.toggle('is-active',i === index)});
+    if(journeyCounter) journeyCounter.textContent = String(index + 1);
+    if(journeyProgress) journeyProgress.style.width = ((index + 1)/journeySteps.length*100) + '%';
+  }
+  var scheduled = false;
+  function update(){
+    scheduled = false;
+    var max = Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
+    scrollProgress.style.transform = 'scaleX(' + Math.min(1,window.scrollY/max) + ')';
+    if(hero && window.innerWidth > 768){
+      hero.style.setProperty('--hero-drift',Math.min(42,window.scrollY*.08) + 'px');
+    }
+    if(journey){
+      var rect = journey.getBoundingClientRect();
+      if(rect.bottom > 0 && rect.top < window.innerHeight){
+        var phase = Math.max(0,Math.min(1,(window.innerHeight-rect.top)/(window.innerHeight+rect.height)));
+        journey.style.setProperty('--journey-glow',(-110*phase) + 'px');
+        if(ribbon) ribbon.style.setProperty('--ribbon-shift',(-170*phase) + 'px');
+      }
+      if(window.innerWidth > 768 && journeySteps.length){
+        var focus = window.innerHeight*.5;
+        var closest = 0;
+        var distance = Infinity;
+        journeySteps.forEach(function(step,i){
+          var bounds = step.getBoundingClientRect();
+          var delta = Math.abs((bounds.top+bounds.bottom)/2-focus);
+          if(delta < distance){distance = delta;closest = i}
+        });
+        activateStep(closest);
+      }
+    }
+  }
+  function schedule(){
+    if(scheduled) return;
+    scheduled = true;
+    window.requestAnimationFrame(update);
+  }
+  document.documentElement.classList.add('motion-ready');
+  window.addEventListener('scroll',schedule,{passive:true});
+  window.addEventListener('resize',schedule,{passive:true});
+  schedule();
+})();
+
+</script>
+</body>
+</html>
